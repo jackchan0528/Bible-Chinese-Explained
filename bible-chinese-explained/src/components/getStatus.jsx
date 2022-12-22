@@ -34,25 +34,126 @@ const GetStatus = () => {
     // console.log(items.record[0].title);
     const result = items.record;
     // console.table(result);
-    return result.map((item) => (
-      <table>
-        <tbody>
-          <tr key={item.book}>
-            <td>{item.book}</td>
-            <td>{item.cname}</td>
-            <td>{item.proc}</td>
-            <td>{item.strong}</td>
-            <td>{item.ntonly}</td>
-            <td>{item.candownload}</td>
-            <td>{item.otonly}</td>
-            <td>{item.version}</td>
-          </tr>
-        </tbody>
-      </table>
-    ));
+    return (
+      <div>
+        <TableHeader />
+        <TableValue result={result} />
+      </div>
+    );
 
     // return JSON.stringify(items);
   }
+};
+
+const TableHeader = () => {
+  return (
+    <div className="flex flex-col">
+      <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
+        <div className="py-2 inline-block min-w-full sm:px-6 lg:px-8">
+          <div className="overflow-hidden">
+            <table className="min-w-full">
+              <thead className="bg-white border-b">
+                <tr>
+                  <th
+                    scope="col"
+                    className="text-sm font-medium text-gray-900 px-6 py-4 text-center"
+                  >
+                    book
+                  </th>
+                  <th
+                    scope="col"
+                    className="text-sm font-medium text-gray-900 px-6 py-4 text-center"
+                  >
+                    cname
+                  </th>
+                  <th
+                    scope="col"
+                    className="text-sm font-medium text-gray-900 px-6 py-4 text-center"
+                  >
+                    proc
+                  </th>
+                  <th
+                    scope="col"
+                    className="text-sm font-medium text-gray-900 px-6 py-4 text-center"
+                  >
+                    strong
+                  </th>
+                  <th
+                    scope="col"
+                    className="text-sm font-medium text-gray-900 px-6 py-4 text-center"
+                  >
+                    ntonly
+                  </th>
+                  <th
+                    scope="col"
+                    className="text-sm font-medium text-gray-900 px-6 py-4 text-center"
+                  >
+                    candownload
+                  </th>
+                  <th
+                    scope="col"
+                    className="text-sm font-medium text-gray-900 px-6 py-4 text-center"
+                  >
+                    otonly
+                  </th>
+                  <th
+                    scope="col"
+                    className="text-sm font-medium text-gray-900 px-6 py-4 text-center"
+                  >
+                    version
+                  </th>
+                </tr>
+              </thead>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const TableValue = (data) => {
+  console.table(data.result);
+  return data.result.map((item) => (
+    <div className="flex flex-col">
+      <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
+        <div className="py-2 inline-block min-w-full sm:px-6 lg:px-8">
+          <div className="overflow-hidden">
+            <table className="min-w-full">
+              <tbody>
+                <tr className="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100">
+                  <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap text-center">
+                    {item.book}
+                  </td>
+                  <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap text-center">
+                    {item.cname}
+                  </td>
+                  <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap text-center">
+                    {item.proc}
+                  </td>
+                  <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap text-center">
+                    {item.strong}
+                  </td>
+                  <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap text-center">
+                    {item.ntonly}
+                  </td>
+                  <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap text-center">
+                    {item.candownload}
+                  </td>
+                  <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap text-center">
+                    {item.otonly}
+                  </td>
+                  <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap text-center">
+                    {item.version}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  ));
 };
 
 export default GetStatus;
