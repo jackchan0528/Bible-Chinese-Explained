@@ -102,7 +102,9 @@ const GetBookList = () => {
     { shortName: "啟", longName: "啟示錄" },
   ];
   return books.map((book) => (
-    <option value={book.shortName}>{book.longName}</option>
+    <option key={book.shortName} value={book.shortName}>
+      {book.longName}
+    </option>
   ));
 };
 
