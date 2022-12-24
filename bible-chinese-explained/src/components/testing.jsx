@@ -1,87 +1,17 @@
-import React, { Component } from "react";
+import React, { Component, useState, useEffect } from "react";
 
 const Testing = () => {
   return (
-    <div class="flex flex-col">
-      <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
-        <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
-          <div class="overflow-hidden">
-            <table class="min-w-full">
-              <thead class="bg-white border-b">
-                <tr>
-                  <th
-                    scope="col"
-                    class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
-                  >
-                    #
-                  </th>
-                  <th
-                    scope="col"
-                    class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
-                  >
-                    First
-                  </th>
-                  <th
-                    scope="col"
-                    class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
-                  >
-                    Last
-                  </th>
-                  <th
-                    scope="col"
-                    class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
-                  >
-                    Handle
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr class="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100">
-                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                    1
-                  </td>
-                  <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                    Mark
-                  </td>
-                  <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                    Otto
-                  </td>
-                  <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                    @mdo
-                  </td>
-                </tr>
-                <tr class="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100">
-                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                    2
-                  </td>
-                  <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                    Jacob
-                  </td>
-                  <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                    Thornton
-                  </td>
-                  <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                    @fat
-                  </td>
-                </tr>
-                <tr class="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100">
-                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                    3
-                  </td>
-                  <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                    Larry
-                  </td>
-                  <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                    Wild
-                  </td>
-                  <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                    @twitter
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
+    <div className="bg-[#F2AA7E]">
+      <h1 className="text-xl font-bold">列出聖經經文</h1>
+      <h2 className="text-left font-bold text-xl bg-[#FACFAD]">Hi</h2>
+      <div className="relative px-2 py-2 w-1/3 lg:max-w-sm snap-center">
+        <select className="w-full p-2.5 text-gray-500 bg-white border rounded-md shadow-sm outline-none appearance-none focus:border-indigo-600">
+          <option>ReactJS Dropdown</option>
+          <option>Laravel 9 with React</option>
+          <option>React with Tailwind CSS</option>
+          <option>React With Headless UI</option>
+        </select>
       </div>
     </div>
   );

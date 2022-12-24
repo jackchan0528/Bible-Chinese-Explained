@@ -1,6 +1,6 @@
 import React, { Component, useState, useEffect } from "react";
 
-const GetStatus = () => {
+const GetBasicBibleInfo = () => {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [items, setItems] = useState([]);
@@ -9,7 +9,7 @@ const GetStatus = () => {
   // this useEffect will run once
   // similar to componentDidMount()
   useEffect(() => {
-    fetch("https://bible.fhl.net/json/abv.php?gb=0")
+    fetch("https://bible.fhl.net/json/ab.php")
       .then((res) => res.json())
       .then(
         (result) => {
@@ -36,10 +36,7 @@ const GetStatus = () => {
     // console.table(result);
     return (
       <div className="bg-[#F2AA7E]">
-        <h1 className="text-xl font-bold">列出聖經與註釋、字彙分析</h1>
-        <h2 className="text-xs">
-          資料庫於 http://ftp.fhl.net/pub/FHL/COBS/data/ 所匯出的離線資料狀況
-        </h2>
+        <h1 className="text-xl font-bold">列出聖經基本資料</h1>
         <div className="flex flex-col">
           <div className="overflow-x-auto sm:-mx-6 lg:-mx-10">
             <div className="py-2 inline-block min-w-full sm:px-6 lg:px-8">
@@ -107,4 +104,4 @@ const TableBody = (data) => {
   );
 };
 
-export default GetStatus;
+export default GetBasicBibleInfo;
