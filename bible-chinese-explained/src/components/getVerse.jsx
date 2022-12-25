@@ -65,7 +65,10 @@ const GetVerse = (data) => {
 const GenerateVerse = (data) => {
   // console.log(data.verses);
   return data.verses.map((verse) => (
-    <div className="text-left bg-[#FBD7B1] px-4 py-2 transition duration-300 ease-in-out hover:bg-[#F8BB8B]">
+    <div
+      key={verse.sec}
+      className="text-left bg-[#FBD7B1] px-4 py-2 transition duration-300 ease-in-out hover:bg-[#F8BB8B]"
+    >
       {verse.sec} {verse.bible_text}
     </div>
   ));

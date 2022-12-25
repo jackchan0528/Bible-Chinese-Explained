@@ -1,36 +1,45 @@
 import React, { Component } from "react";
 
-const HomePage = () => {
-  return (
-    <div className="bg-[#F2AA7E]">
-      <h1 className="text-xl font-bold">聖經App</h1>
-      {/* <h2 className="text-left font-bold text-3xl bg-[#FACFAD]">Hi</h2> */}
-      <div className="flex-col w-1/2 px-2 py-2">
-        <label
-          htmlFor="countries"
-          className=" px-2 block mb-2 text-sm font-medium text-gray-900 dark:text-white pt-3 left-0"
-        >
-          請選擇中文經卷
-        </label>
-        <select
-          id="countries"
-          //   ref={(input) => (this.menu = input)}
-          defaultValue={"DEFAULT"}
-          className=" bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 px-2 py-2"
-        >
-          <option value="DEFAULT" disabled>
-            請選擇
-          </option>
-          <GetBookList />
-          {/* <option value="US">United States</option>
-          <option value="CA">Canada</option>
-          <option value="FR">France</option>
-          <option value="DE">Germany</option> */}
-        </select>
+class HomePage extends Component {
+  // handleSelectedBook(e) {
+  //   // console.log(e.target.value);
+  //   console.log(e);
+  //   this.props.setSelectedBook({ selectedBook: e.target.value });
+  //   console.log("Book selected: ", e.target.value);
+  // }
+  render() {
+    return (
+      <div className="bg-[#F2AA7E]">
+        <h1 className="text-xl font-bold">聖經App</h1>
+        {/* <h2 className="text-left font-bold text-3xl bg-[#FACFAD]">Hi</h2> */}
+        <div className="flex-col w-1/2 px-2 py-2">
+          <label
+            htmlFor="countries"
+            className=" px-2 block mb-2 text-sm font-medium text-gray-900 dark:text-white pt-3 left-0"
+          >
+            請選擇中文經卷
+          </label>
+          <select
+            id="countries"
+            //   ref={(input) => (this.menu = input)}
+            value={this.props.value}
+            onChange={(e) => this.props.onSelectedBook(e.target.value)}
+            className=" bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 px-2 py-2"
+          >
+            <option value="DEFAULT" disabled>
+              請選擇
+            </option>
+            <GetBookList />
+            {/* <option value="US">United States</option>
+            <option value="CA">Canada</option>
+            <option value="FR">France</option>
+            <option value="DE">Germany</option> */}
+          </select>
+        </div>
       </div>
-    </div>
-  );
-};
+    );
+  }
+}
 
 const GetBookList = () => {
   const books = [
