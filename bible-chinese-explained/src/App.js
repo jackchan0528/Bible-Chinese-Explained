@@ -12,10 +12,10 @@ function App() {
   const [selectedBook, setSelectedBook] = useState("創");
   const [selectedChapter, setSelectedChapter] = useState(1);
 
-  console.log(selectedBook)
+  console.log(selectedBook, selectedChapter)
 
   const chineses = selectedBook;
-  const chap = 1;
+  const chap = selectedChapter;
   const version = "nstrunv";
   const strong = 1;
   const gb = 0;
@@ -24,20 +24,26 @@ function App() {
 
 
   const handleSelectedBook = (book) => {
-    // console.log(e.target.value);
+    console.log(book);
     setSelectedBook(book);
-    console.log("Book selected: ", selectedBook);
   }
+  const handleSelectedChapter = (chap) => { setSelectedChapter(chap); }
 
   return (
     <React.Fragment>
       <div className="App">
         {/* < Testing /> */}
-        < HomePage value={selectedBook} onSelectedBook={(book) => { handleSelectedBook(book) }} />
+        < HomePage
+          // key={[selectedBook, selectedChapter]}
+          selectedBook={selectedBook}
+          selectedChapter={selectedChapter}
+          onSelectedBook={(book) => { handleSelectedBook(book) }}
+          onSelectedChapter={(chap) => { handleSelectedChapter(chap) }}
+        />
         {/* < GetBibleVerse /> */}
         {/* < GetStatus /> */}
         {/* < GetBasicBibleInfo /> */}
-        < GetVerse key={selectedBook} params={getVerseParams} />
+        < GetVerse key={[selectedBook, selectedChapter]} params={getVerseParams} />
         {/* < GetVerse chineses="羅" chap="1" sec="1" version="nstrunv" strong="1" gb="0" /> */}
       </div>
     </React.Fragment >
