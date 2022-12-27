@@ -1,16 +1,20 @@
 import React, { Component, useState, useEffect } from "react";
 
-const GetVerse = (data) => {
+const GetVerse = (props) => {
+  console.log(props);
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [items, setItems] = useState([]);
 
   // chineses, chap, sec, version, strong, gb
-  const chineses = data.params.chineses;
-  const chap = data.params.chap;
-  const version = data.params.version;
-  const strong = data.params.strong;
-  const gb = data.params.gb;
+  const chineses = props.selectedBook;
+  const chap = props.selectedChapter;
+  // const version = props.params.version;
+  // const strong = props.params.strong;
+  // const gb = props.params.gb;
+  const version = "nstrunv";
+  const strong = 1;
+  const gb = 0;
 
   // console.log(
   //   `https://bible.fhl.net/json/qb.php?chineses=${chineses}&chap=${chap}&sec=${sec}&version=${version}&strong=${strong}&gb=${gb}`
@@ -37,7 +41,7 @@ const GetVerse = (data) => {
           setError(error);
         }
       );
-  }, []);
+  }, [props.selectedBook, props.selectedChapter]);
 
   if (error) {
     return <div>Error: {error.message}</div>;

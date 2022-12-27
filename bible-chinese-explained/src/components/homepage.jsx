@@ -1,67 +1,59 @@
-import React, { Component } from "react";
+import React, { Component, useEffect } from "react";
 
-class HomePage extends Component {
-  // handleSelectedBook(e) {
-  //   // console.log(e.target.value);
-  //   console.log(e);
-  //   this.props.setSelectedBook({ selectedBook: e.target.value });
-  //   console.log("Book selected: ", e.target.value);
-  // }
-  render() {
-    return (
-      <div className="bg-[#F2AA7E]">
-        <h1 className="text-xl font-bold">聖經App</h1>
-        {/* <h2 className="text-left font-bold text-3xl bg-[#FACFAD]">Hi</h2> */}
-        <div className="flex">
-          <div className="flex-col w-1/2 px-2 py-2">
-            <label
-              htmlFor="books"
-              className=" px-2 block mb-2 text-sm font-medium text-gray-900 dark:text-white pt-3 left-0"
-            >
-              請選擇中文經卷
-            </label>
-            <select
-              id="books"
-              //   ref={(input) => (this.menu = input)}
-              value={this.props.value}
-              onChange={(e) => this.props.onSelectedBook(e.target.selectedBook)}
-              className=" bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 px-2 py-2"
-            >
-              <option value="DEFAULT" disabled>
-                請選擇第幾章
-              </option>
-              <GetBookList />
-            </select>
-          </div>
-          <div className="flex-col w-1/2 px-2 py-2">
-            <label
-              htmlFor="chapters"
-              className=" px-2 block mb-2 text-sm font-medium text-gray-900 dark:text-white pt-3 left-0"
-            >
+const HomePage = (props) => {
+  return (
+    <div className="bg-[#F2AA7E]">
+      <h1 className="text-xl font-bold">聖經App</h1>
+      {/* <h2 className="text-left font-bold text-3xl bg-[#FACFAD]">Hi</h2> */}
+      <div className="flex">
+        <div className="flex-col w-1/2 px-2 py-2">
+          <label
+            htmlFor="books"
+            className=" px-2 block mb-2 text-sm font-medium text-gray-900 dark:text-white pt-3 left-0"
+          >
+            請選擇中文經卷
+          </label>
+          <select
+            id="books"
+            //   ref={(input) => (this.menu = input)}
+            value={props.value}
+            onChange={(e) => props.onSelectedBook(e.target.value)}
+            className=" bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 px-2 py-2"
+          >
+            <option value="DEFAULT" disabled>
               請選擇經卷
-            </label>
-            <select
-              id="chapters"
-              //   ref={(input) => (this.menu = input)}
-              value={this.props.value}
-              onChange={(e) => this.props.onSelectedChapter(e.target.value)}
-              className=" bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 px-2 py-2"
-            >
-              <option value="DEFAULT" disabled>
-                請選擇
-              </option>
-              <GetNumberOfChaptersList value={this.props.selectedBook} />
-              {/* <option value="US">United States</option>
-              <option value="CA">Canada</option>
-              <option value="FR">France</option>
-              <option value="DE">Germany</option> */}
-            </select>
-          </div>
+            </option>
+            <GetBookList />
+          </select>
+        </div>
+        <div className="flex-col w-1/2 px-2 py-2">
+          <label
+            htmlFor="chapters"
+            className=" px-2 block mb-2 text-sm font-medium text-gray-900 dark:text-white pt-3 left-0"
+          >
+            請選擇第幾章
+          </label>
+          <select
+            id="chapters"
+            //   ref={(input) => (this.menu = input)}
+            value={props.value}
+            onChange={(e) => props.onSelectedChapter(e.target.value)}
+            className=" bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 px-2 py-2"
+          >
+            <option value="DEFAULT" disabled>
+              請選擇
+            </option>
+            <GetNumberOfChaptersList value={props.selectedBook} />
+            {/* <option value="US">United States</option>
+        <option value="CA">Canada</option>
+        <option value="FR">France</option>
+        <option value="DE">Germany</option> */}
+          </select>
         </div>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
 const GetBookList = () => {
   const books = [
@@ -211,10 +203,10 @@ const GetNumberOfChaptersList = (value) => {
   // var array = Array.from({ length: numberOfChapters }, (_, i) => i + 1);
   // var arrayChap = Array.from({ length: value.value }, (_, i) => i + 1);
   // console.log(arrayChap);
-  console.log(
-    "Testing",
-    books.filter((book) => book.shortName === value.value)
-  );
+  // console.log(
+  //   "Testing",
+  //   books.filter((book) => book.shortName === value.value)
+  // );
   var filteredNumberOfChapters = books.filter(
     (book) => book.shortName === value.value
   )[0].numberOfChapters;
