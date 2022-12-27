@@ -20,10 +20,7 @@ const GetVerse = (props) => {
   //   `https://bible.fhl.net/json/qb.php?chineses=${chineses}&chap=${chap}&sec=${sec}&version=${version}&strong=${strong}&gb=${gb}`
   // );
 
-  // Note: the empty deps array [] means
-  // this useEffect will run once
-  // similar to componentDidMount()
-  useEffect(() => {
+  const fetchBibleData = () => {
     fetch(
       `https://bible.fhl.net/json/qb.php?chineses=${chineses}&chap=${chap}&version=${version}&strong=${strong}&gb=${gb}`
     )
@@ -41,7 +38,31 @@ const GetVerse = (props) => {
           setError(error);
         }
       );
+  };
+
+  useEffect(() => {
+    fetchBibleData();
   }, [props.selectedBook, props.selectedChapter]);
+
+  // useEffect(() => {
+  //   fetch(
+  //     `https://bible.fhl.net/json/qb.php?chineses=${chineses}&chap=${chap}&version=${version}&strong=${strong}&gb=${gb}`
+  //   )
+  //     .then((res) => res.json())
+  //     .then(
+  //       (result) => {
+  //         setIsLoaded(true);
+  //         setItems(result);
+  //       },
+  //       // Note: it's important to handle errors here
+  //       // instead of a catch() block so that we don't swallow
+  //       // exceptions from actual bugs in components.
+  //       (error) => {
+  //         setIsLoaded(true);
+  //         setError(error);
+  //       }
+  //     );
+  // }, [props.selectedBook, props.selectedChapter]);
 
   if (error) {
     return <div>Error: {error.message}</div>;
