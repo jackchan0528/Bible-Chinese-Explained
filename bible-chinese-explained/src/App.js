@@ -26,6 +26,14 @@ function App() {
   const handleSelectedBook = (book) => { setSelectedBook(book); }
   const handleSelectedChapter = (chap) => { setSelectedChapter(chap); }
 
+  const handlePreviousChapter = () => {
+    const target = selectedChapter > 1 ? selectedChapter - 1 : 1
+    setSelectedChapter(target)
+  }
+  const handleNextChapter = () => {
+    setSelectedChapter(selectedChapter + 1)
+  }
+
   return (
     <React.Fragment>
       <div className="App">
@@ -47,6 +55,19 @@ function App() {
           selectedChapter={selectedChapter}
         // params={getVerseParams} 
         />}
+        {selectedBook && <div className="grid grid-flow-col auto-rows-max">
+          <button
+            onClick={() => handlePreviousChapter(selectedChapter)}
+          >
+            Previous Chapter
+          </button>
+          <button
+            onClick={() => handleNextChapter(selectedChapter)}
+          >
+            Next Chapter
+          </button>
+
+        </div>}
         {/* Get a main Body when Book is not selected */}
         {!selectedBook && <h3>Please select a book</h3>}
         {/* < GetVerse chineses="羅" chap="1" sec="1" version="nstrunv" strong="1" gb="0" /> */}

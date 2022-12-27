@@ -76,7 +76,7 @@ const GetVerse = (props) => {
       <div className="bg-[#F2AA7E]">
         <h1 className="text-xl font-bold">列出聖經經文</h1>
         <h2 className="text-left font-bold text-3xl bg-[#FACFAD]">
-          {items.record[0].chineses} {items.record[0].engs}{" "}
+          {items.record[0].chineses} {items.record[0].engs}
           {items.record[0].chap}
         </h2>
         <GenerateVerse verses={items.record} />
@@ -92,7 +92,7 @@ const GenerateVerse = (data) => {
   return data.verses.map((verse) => (
     <div
       key={verse.sec}
-      className="text-left bg-[#FBD7B1] px-4 py-2 transition duration-300 ease-in-out hover:bg-[#F8BB8B]"
+      className="text-left bg-[#FBD7B1] px-4 py-2 transition duration-300 ease-in-out hover:bg-[#F8BB8B] "
     >
       {verse.sec} {verse.bible_text}
     </div>

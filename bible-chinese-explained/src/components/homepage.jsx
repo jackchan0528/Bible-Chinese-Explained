@@ -213,11 +213,11 @@ const GetNumberOfChaptersList = (value) => {
   // );
   // console.log("now printing value.value", value);
 
-  if (value.value == "") {
-    console.log(value.value, "is empty");
-  } else {
-    console.log(value.value, "is not empty");
-  }
+  // if (value.value == "") {
+  //   console.log(value.value, "is empty");
+  // } else {
+  //   console.log(value.value, "is not empty");
+  // }
 
   var filteredNumberOfChapters =
     value.value !== ""
@@ -225,7 +225,7 @@ const GetNumberOfChaptersList = (value) => {
           .numberOfChapters
       : 0;
 
-  console.log("testing", filteredNumberOfChapters);
+  // console.log("testing", filteredNumberOfChapters);
 
   var filteredNumberOfChaptersArray = Array.from(
     { length: filteredNumberOfChapters },
