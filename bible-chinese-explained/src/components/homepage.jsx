@@ -19,11 +19,12 @@ const HomePage = (props) => {
             value={props.selectedBook}
             onChange={(e) => {
               props.onSelectedBook(e.target.value);
+              // To prevent accessing some books without that chapter number, we should return chap to 1
               props.onSelectedChapter(1);
             }}
             className=" bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 px-2 py-2"
           >
-            <option value="DEFAULT" disabled>
+            <option value="" disabled={true}>
               請選擇經卷
             </option>
             <GetBookList />
@@ -210,9 +211,21 @@ const GetNumberOfChaptersList = (value) => {
   //   "Testing",
   //   books.filter((book) => book.shortName === value.value)
   // );
-  var filteredNumberOfChapters = books.filter(
-    (book) => book.shortName === value.value
-  )[0].numberOfChapters;
+  // console.log("now printing value.value", value);
+
+  if (value.value == "") {
+    console.log(value.value, "is empty");
+  } else {
+    console.log(value.value, "is not empty");
+  }
+
+  var filteredNumberOfChapters =
+    value.value !== ""
+      ? books.filter((book) => book.shortName === value.value)[0]
+          .numberOfChapters
+      : 0;
+
+  console.log("testing", filteredNumberOfChapters);
 
   var filteredNumberOfChaptersArray = Array.from(
     { length: filteredNumberOfChapters },

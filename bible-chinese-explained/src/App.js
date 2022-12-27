@@ -9,7 +9,7 @@ import GetVerse from './components/getVerse';
 import HomePage from './components/homepage';
 
 function App() {
-  const [selectedBook, setSelectedBook] = useState("創");
+  const [selectedBook, setSelectedBook] = useState("");
   const [selectedChapter, setSelectedChapter] = useState(1);
 
   console.log("Current selection:", selectedBook, selectedChapter)
@@ -41,12 +41,14 @@ function App() {
         {/* < GetBibleVerse /> */}
         {/* < GetStatus /> */}
         {/* < GetBasicBibleInfo /> */}
-        < GetVerse
+        {selectedBook && < GetVerse
           // key={[selectedBook, selectedChapter]} 
           selectedBook={selectedBook}
           selectedChapter={selectedChapter}
         // params={getVerseParams} 
-        />
+        />}
+        {/* Get a main Body when Book is not selected */}
+        {!selectedBook && <h3>Please select a book</h3>}
         {/* < GetVerse chineses="羅" chap="1" sec="1" version="nstrunv" strong="1" gb="0" /> */}
       </div>
     </React.Fragment >
