@@ -168,6 +168,7 @@ function App() {
           // key={[selectedBook, selectedChapter]} 
           selectedBook={selectedBook}
           selectedChapter={selectedChapter}
+          books={books}
         // params={getVerseParams} 
         />}
         {selectedBook && <div className="grid grid-flow-col auto-rows-max inline-flex">
