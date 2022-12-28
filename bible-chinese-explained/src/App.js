@@ -102,14 +102,19 @@ function App() {
 
   const handlePreviousChapter = () => {
 
-    if (selectedBook === "創") {
-      setSelectedChapter(books[65].numberOfChapters)
-      setSelectedBook(books[65].shortName)
+    if (selectedChapter === 1) {
+      if (selectedBook === "創") {
+        setSelectedChapter(books[65].numberOfChapters)
+        setSelectedBook(books[65].shortName)
+      } else {
+        var index = books.findIndex(book => book.shortName === selectedBook)
+        setSelectedChapter(books[index - 1].numberOfChapters)
+        setSelectedBook(books[index - 1].shortName)
+      }
     } else {
-      var index = books.findIndex(book => book.shortName === selectedBook)
-      setSelectedChapter(books[index - 1].numberOfChapters)
-      setSelectedBook(books[index - 1].shortName)
+      setSelectedChapter(selectedChapter - 1)
     }
+    window.scrollTo(0, 0)
 
 
     // const target = selectedChapter > 1 ? selectedChapter - 1 : 1
@@ -137,6 +142,7 @@ function App() {
     } else {
       setSelectedChapter(currentChapter + 1)
     }
+    window.scrollTo(0, 0)
   }
 
   return (
