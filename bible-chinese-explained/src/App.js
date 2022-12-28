@@ -12,7 +12,7 @@ function App() {
   const [selectedBook, setSelectedBook] = useState("");
   const [selectedChapter, setSelectedChapter] = useState(1);
 
-  // console.log("Current selection:", selectedBook, selectedChapter)
+  console.log("Current selection:", selectedBook, selectedChapter)
 
   // const chineses = selectedBook;
   // const chap = selectedChapter;
@@ -101,8 +101,11 @@ function App() {
   //   })[0].numberOfChapters
 
   const handlePreviousChapter = () => {
+    console.log("Additional checks on Current selection:", selectedBook, selectedChapter)
 
-    if (selectedChapter === 1) {
+    // be careful that selectedChapter is a string, while numberOfChapters is a number, so we convert selectedChapter to number
+    const currentChapter = Number(selectedChapter)
+    if (currentChapter === 1) {
       if (selectedBook === "創") {
         setSelectedChapter(books[65].numberOfChapters)
         setSelectedBook(books[65].shortName)
@@ -112,7 +115,7 @@ function App() {
         setSelectedBook(books[index - 1].shortName)
       }
     } else {
-      setSelectedChapter(selectedChapter - 1)
+      setSelectedChapter(currentChapter - 1)
     }
     window.scrollTo(0, 0)
 
