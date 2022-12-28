@@ -1,7 +1,6 @@
 import React, { Component, useState, useEffect } from "react";
 
 const GetVerse = (props) => {
-  console.log(props);
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [items, setItems] = useState([]);
