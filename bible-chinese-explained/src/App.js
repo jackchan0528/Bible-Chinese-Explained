@@ -153,7 +153,7 @@ function App() {
     <React.Fragment>
       <div className="App flex flex-col" >
         {/* <div style={{ maxHeight: '75vh', overflow: 'auto' }}> */}
-        < Testing />
+        {/* < Testing /> */}
         {/* </div> */}
         < HomePage
           // key={[selectedBook, selectedChapter]}
