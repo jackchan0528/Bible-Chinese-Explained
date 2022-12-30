@@ -14,6 +14,7 @@ function App() {
 
   console.log("Current selection:", selectedBook, selectedChapter)
 
+
   // const chineses = selectedBook;
   // const chap = selectedChapter;
   // const version = "nstrunv";
@@ -150,8 +151,10 @@ function App() {
 
   return (
     <React.Fragment>
-      <div className="App">
-        {/* < Testing /> */}
+      <div className="App flex flex-col" >
+        {/* <div style={{ maxHeight: '75vh', overflow: 'auto' }}> */}
+        < Testing />
+        {/* </div> */}
         < HomePage
           // key={[selectedBook, selectedChapter]}
           // key={selectedBook}
@@ -164,28 +167,31 @@ function App() {
         {/* < GetBibleVerse /> */}
         {/* < GetStatus /> */}
         {/* < GetBasicBibleInfo /> */}
-        {selectedBook && < GetVerse
-          // key={[selectedBook, selectedChapter]} 
-          selectedBook={selectedBook}
-          selectedChapter={selectedChapter}
-          books={books}
-        // params={getVerseParams} 
-        />}
-        {selectedBook && <div className="grid grid-flow-col auto-rows-max inline-flex">
-          <button
-            className='bg-[#F6C2A2] hover:bg-[#F09E6A] text-white font-bold py-2 px-4 rounded-full'
-            onClick={() => handlePreviousChapter(selectedChapter)}
-          >
-            上一章
-          </button>
-          <button
-            className='bg-[#F6C2A2] hover:bg-[#F09E6A] text-white font-bold py-2 px-4 rounded-full'
-            onClick={() => handleNextChapter(selectedChapter)}
-          >
-            下一章
-          </button>
+        {/* <div style={{ maxHeight: '75vh', overflow: 'auto' }}> */}
+        <div className='max-h-screen pb-20 bg-[#FBD7B1]'>
+          {selectedBook && < GetVerse
+            selectedBook={selectedBook}
+            selectedChapter={selectedChapter}
+            books={books}
+          />}
+        </div>
+        <div className='fixed inset-x-4 bottom-0 h-16'>
+          {selectedBook && <div className="grid grid-flow-col auto-rows-max inline-flex h-auto px-2 py-2">
+            <button
+              className='bg-gray-400 opacity-90 hover:bg-[#F09E6A] text-white font-bold py-2 px-2 rounded-full'
+              onClick={() => handlePreviousChapter(selectedChapter)}
+            >
+              上一章
+            </button>
+            <button
+              className='bg-gray-400 opacity-90 hover:bg-[#F09E6A] text-white font-bold py-2 px-2 rounded-full'
+              onClick={() => handleNextChapter(selectedChapter)}
+            >
+              下一章
+            </button>
 
-        </div>}
+          </div>}
+        </div>
         {/* Get a main Body when Book is not selected */}
         {!selectedBook && <h3>Please select a book</h3>}
         {/* < GetVerse chineses="羅" chap="1" sec="1" version="nstrunv" strong="1" gb="0" /> */}
