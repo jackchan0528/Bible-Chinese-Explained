@@ -1,4 +1,6 @@
 import React, { Component, useState, useEffect } from "react";
+import GetExplanation from "./getExplanation";
+import Testing from "./testing";
 
 const GetVerse = (props) => {
   const [error, setError] = useState(null);
@@ -82,7 +84,11 @@ const GetVerse = (props) => {
         <h2 className="text-left font-bold text-3xl bg-[#FACFAD]">
           《{chapterChineseFullName}》 第{items.record[0].chap}章
         </h2>
-        <GenerateVerse verses={items.record} />
+        <GenerateVerse
+          verses={items.record}
+          selectedBook={props.selectedBook}
+          selectedChapter={props.selectedChapter}
+        />
       </div>
     );
 
@@ -90,12 +96,19 @@ const GetVerse = (props) => {
   }
 };
 
-const GenerateVerse = (data) => {
-  // console.log(data.verses);
-  return data.verses.map((verse) => (
+const handleExplanation = (book, chapter, verse) => {
+  console.log("i am printing prop:", book, chapter, verse);
+  return <Testing />;
+};
+
+const GenerateVerse = (props) => {
+  return props.verses.map((verse) => (
     <div
       key={verse.sec}
       className="text-left bg-[#FBD7B1] px-4 py-2 transition duration-300 ease-in-out hover:bg-[#F8BB8B] text-2xl"
+      onClick={() =>
+        handleExplanation(props.selectedBook, props.selectedChapter, verse.sec)
+      }
     >
       {verse.sec} {verse.bible_text}
     </div>

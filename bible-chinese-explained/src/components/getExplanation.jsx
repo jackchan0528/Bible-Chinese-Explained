@@ -1,24 +1,20 @@
 import React, { Component, useState, useEffect } from "react";
 
-const Testing = (props) => {
-  console.log("entering testing");
+const GetExplanation = (props) => {
+  console.log("hi");
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [items, setItems] = useState([]);
 
-  // chineses, chap, sec, version, strong, gb
-  // const chineses = props.selectedBook;
-  // const chap = props.selectedChapter;
-  // const version = props.params.version;
-  // const strong = props.params.strong;
-  // const gb = props.params.gb;
   const version = "nstrunv";
   const strong = 1;
   const gb = 0;
 
-  // console.log(
-  //   `https://bible.fhl.net/json/qb.php?chineses=${chineses}&chap=${chap}&sec=${sec}&version=${version}&strong=${strong}&gb=${gb}`
-  // );
+  const book = props.book;
+  const chapter = props.chapter;
+  const verse = props.verse;
+
+  console.log("called", book, chapter, verse);
 
   const fetchExplanationData = () => {
     fetch(
@@ -42,32 +38,34 @@ const Testing = (props) => {
 
   useEffect(() => {
     fetchExplanationData();
-  }, [props.selectedBook, props.selectedChapter]);
+  }, [props.book, props.chapter]);
 
   if (error) {
     return <div>Error: {error.message}</div>;
   } else if (!isLoaded) {
     return <div>Loading...</div>;
   } else {
-    console.log(items.record[0].com_text);
-    const verses = items.record;
+    // console.log(items.record[0].com_text);
     // console.table(verses);
+    console.log("testing here!");
 
     return (
       <div className="bg-[#FDE8D8]">
         <h1 className="text-xl font-bold">列出註釋</h1>
 
-        <GenerateExplanation verses={items.record[0].com_text} />
+        <GenerateExplanation explanations={items.record[0].com_text} />
       </div>
     );
   }
 };
 
 const GenerateExplanation = (data) => {
-  // console.log(data.verses);
+  console.log(data.verses);
   return (
-    <div className="text-left text-l whitespace-pre-line">{data.verses}</div>
+    <div className="text-left text-l whitespace-pre-wrap">
+      {data.explanations}
+    </div>
   );
 };
 
-export default Testing;
+export default GetExplanation;
