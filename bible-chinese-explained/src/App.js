@@ -168,13 +168,13 @@ function App() {
         {/* < GetStatus /> */}
         {/* < GetBasicBibleInfo /> */}
         {/* <div style={{ maxHeight: '75vh', overflow: 'auto' }}> */}
-        <div className='max-h-screen pb-20 bg-[#FBD7B1]'>
-          {selectedBook && < GetVerse
+        {selectedBook && <div className='max-h-screen pb-20 bg-[#FBD7B1]'>
+          < GetVerse
             selectedBook={selectedBook}
             selectedChapter={selectedChapter}
             books={books}
-          />}
-        </div>
+          />
+        </div>}
         <div className='fixed inset-x-4 bottom-0 h-16'>
           {selectedBook && <div className="grid grid-flow-col auto-rows-max inline-flex h-auto px-2 py-2">
             <button
