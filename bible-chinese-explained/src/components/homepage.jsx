@@ -1,67 +1,97 @@
 import React, { Component, useEffect } from "react";
+import GetVerse from "./getVerse";
 
 const HomePage = (props) => {
   return (
-    <div className="bg-[#F2AA7E]">
-      <h1 className="text-xl font-bold text-center text-xl">聖經App</h1>
-      {/* <h2 className="text-left font-bold text-3xl bg-[#FACFAD]">Hi</h2> */}
-      <div className="flex">
-        <div className="flex-col w-1/2 px-2 py-2">
-          <label
-            htmlFor="books"
-            className=" px-2 block mb-2 text-sm font-medium text-gray-900 dark:text-white pt-3 left-0"
-          >
-            請選擇中文經卷
-          </label>
-          <select
-            id="books"
-            //   ref={(input) => (this.menu = input)}
-            value={props.selectedBook}
-            onChange={(e) => {
-              props.onSelectedBook(e.target.value);
-              // To prevent accessing some books without that chapter number, we should return chap to 1
-              props.onSelectedChapter(1);
-            }}
-            className=" bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 px-2 py-2"
-          >
-            <option value="" disabled={true}>
-              --請選擇經卷--
-            </option>
-            <GetBookList />
-          </select>
-        </div>
-        <div className="flex-col w-1/2 px-2 py-2">
-          <label
-            htmlFor="chapters"
-            className=" px-2 block mb-2 text-sm font-medium text-gray-900 dark:text-white pt-3 left-0"
-          >
-            請選擇第幾章
-          </label>
-          <select
-            id="chapters"
-            //   ref={(input) => (this.menu = input)}
-            value={props.selectedChapter}
-            onChange={(e) => props.onSelectedChapter(e.target.value)}
-            className=" bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 px-2 py-2"
-          >
-            <option value="" disabled={true}>
-              --請選擇章節--
-            </option>
-            <GetNumberOfChaptersList
+    <div className="homepage">
+      <div className="bg-[#F2AA7E]">
+        <h1 className="text-xl font-bold text-center text-2xl pt-2">聖經App</h1>
+        {/* <h2 className="text-left font-bold text-3xl bg-[#FACFAD]">Hi</h2> */}
+        <div className="flex">
+          <div className="flex-col w-1/2 px-2 py-2">
+            <label
+              htmlFor="books"
+              className=" px-2 block mb-2 text-sm font-medium text-gray-900 dark:text-white pt-3 left-0"
+            >
+              請選擇中文經卷
+            </label>
+            <select
+              id="books"
+              //   ref={(input) => (this.menu = input)}
               value={props.selectedBook}
-              books={props.books}
-            />
-            {/* <option value="US">United States</option>
+              onChange={(e) => {
+                props.onSelectedBook(e.target.value);
+                // To prevent accessing some books without that chapter number, we should return chap to 1
+                props.onSelectedChapter(1);
+              }}
+              className=" bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 px-2 py-2"
+            >
+              <option value="" disabled={true}>
+                --請選擇經卷--
+              </option>
+              <GetBookList />
+            </select>
+          </div>
+          <div className="flex-col w-1/2 px-2 py-2">
+            <label
+              htmlFor="chapters"
+              className=" px-2 block mb-2 text-sm font-medium text-gray-900 dark:text-white pt-3 left-0"
+            >
+              請選擇第幾章
+            </label>
+            <select
+              id="chapters"
+              //   ref={(input) => (this.menu = input)}
+              value={props.selectedChapter}
+              onChange={(e) => props.onSelectedChapter(e.target.value)}
+              className=" bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 px-2 py-2"
+            >
+              <option value="" disabled={true}>
+                --請選擇章節--
+              </option>
+              <GetNumberOfChaptersList
+                value={props.selectedBook}
+                books={props.books}
+              />
+              {/* <option value="US">United States</option>
         <option value="CA">Canada</option>
         <option value="FR">France</option>
         <option value="DE">Germany</option> */}
-          </select>
+            </select>
+          </div>
         </div>
+        {/* Get a main Body when Book is not selected */}
+        {!props.selectedBook && (
+          <h3 className="bg-[#FBD7B1] text-center text-l">請選擇中文經卷</h3>
+        )}
       </div>
-      {/* Get a main Body when Book is not selected */}
-      {!props.selectedBook && (
-        <h3 className="bg-[#FBD7B1] text-center text-l">請選擇中文經卷</h3>
+      {props.selectedBook && (
+        <div className="max-h-screen pb-20 bg-[#FBD7B1]">
+          <GetVerse
+            selectedBook={props.selectedBook}
+            selectedChapter={props.selectedChapter}
+            books={props.books}
+          />
+        </div>
       )}
+      <div className="fixed inset-x-4 bottom-0 h-16">
+        {props.selectedBook && (
+          <div className="grid grid-flow-col auto-rows-max inline-flex h-auto px-2 py-2">
+            <button
+              className="bg-gray-400 opacity-90 hover:bg-[#F09E6A] text-white font-bold py-2 px-2 rounded-full"
+              onClick={() => props.handlePreviousChapter(props.selectedChapter)}
+            >
+              上一章
+            </button>
+            <button
+              className="bg-gray-400 opacity-90 hover:bg-[#F09E6A] text-white font-bold py-2 px-2 rounded-full"
+              onClick={() => props.handleNextChapter(props.selectedChapter)}
+            >
+              下一章
+            </button>
+          </div>
+        )}
+      </div>
     </div>
   );
 };

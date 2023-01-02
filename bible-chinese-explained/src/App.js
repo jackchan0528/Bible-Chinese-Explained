@@ -155,35 +155,37 @@ function App() {
             onSelectedBook={(book) => { handleSelectedBook(book) }}
             onSelectedChapter={(chap) => { handleSelectedChapter(chap) }}
             books={books}
+            handlePreviousChapter={handlePreviousChapter}
+            handleNextChapter={handleNextChapter}
           />}
         />
         <Route path="*" element={<Navigate to="/not-found" replace />} />
         {/* <Navigate to="/not-found" /> */}
       </Routes>
-      <div className="App flex flex-col" >
-        {/* <div style={{ maxHeight: '75vh', overflow: 'auto' }}> */}
-        {/* < Testing /> */}
-        {/* < GetExplanation /> */}
-        {/* </div> */}
-        {/* < HomePage
+      {/* <div className="App flex flex-col" > */}
+      {/* <div style={{ maxHeight: '75vh', overflow: 'auto' }}> */}
+      {/* < Testing /> */}
+      {/* < GetExplanation /> */}
+      {/* </div> */}
+      {/* < HomePage
           selectedBook={selectedBook}
           selectedChapter={selectedChapter}
           onSelectedBook={(book) => { handleSelectedBook(book) }}
           onSelectedChapter={(chap) => { handleSelectedChapter(chap) }}
           books={books}
         /> */}
-        {/* < GetBibleVerse /> */}
-        {/* < GetStatus /> */}
-        {/* < GetBasicBibleInfo /> */}
-        {/* <div style={{ maxHeight: '75vh', overflow: 'auto' }}> */}
-        {selectedBook && <div className='max-h-screen pb-20 bg-[#FBD7B1]'>
+      {/* < GetBibleVerse /> */}
+      {/* < GetStatus /> */}
+      {/* < GetBasicBibleInfo /> */}
+      {/* <div style={{ maxHeight: '75vh', overflow: 'auto' }}> */}
+      {/* {selectedBook && <div className='max-h-screen pb-20 bg-[#FBD7B1]'>
           < GetVerse
             selectedBook={selectedBook}
             selectedChapter={selectedChapter}
             books={books}
           />
-        </div>}
-        <div className='fixed inset-x-4 bottom-0 h-16'>
+        </div>} */}
+      {/* <div className='fixed inset-x-4 bottom-0 h-16'>
           {selectedBook && <div className="grid grid-flow-col auto-rows-max inline-flex h-auto px-2 py-2">
             <button
               className='bg-gray-400 opacity-90 hover:bg-[#F09E6A] text-white font-bold py-2 px-2 rounded-full'
@@ -199,10 +201,10 @@ function App() {
             </button>
 
           </div>}
-        </div>
-        {/* Get a main Body when Book is not selected */}
-        {/* {!selectedBook && <h3 className='bg-[#FBD7B1]'>Please select a book</h3>} */}
-      </div>
+        </div> */}
+      {/* Get a main Body when Book is not selected */}
+      {/* {!selectedBook && <h3 className='bg-[#FBD7B1]'>Please select a book</h3>} */}
+      {/* </div> */}
     </React.Fragment >
   );
 }

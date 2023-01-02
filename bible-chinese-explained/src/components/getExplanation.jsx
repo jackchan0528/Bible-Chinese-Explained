@@ -74,8 +74,12 @@ const GetExplanation = (props) => {
 
     return (
       <div className="bg-[#FDE8D8]">
-        <h1 className="text-xl font-bold">列出註釋</h1>
-
+        <h1 className="text-center font-bold text-2xl text-middle px-2 py-2">
+          列出註釋
+        </h1>
+        <h2 className="text-left font-bold text-xl bg-[#FACFAD] px-2 py-2">
+          《{book}》 第{chapter}章 第{verse}節
+        </h2>
         <GenerateExplanation explanations={items.record[0].com_text} />
       </div>
     );

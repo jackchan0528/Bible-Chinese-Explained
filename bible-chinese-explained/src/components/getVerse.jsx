@@ -105,7 +105,7 @@ const GetVerse = (props) => {
 
     return (
       <div className="bg-[#F2AA7E]">
-        <h1 className="text-xl font-bold">列出聖經經文</h1>
+        <h1 className="text-xl font-bold text-center">列出聖經經文</h1>
         <h2 className="text-left font-bold text-3xl bg-[#FACFAD]">
           《{chapterChineseFullName}》 第{items.record[0].chap}章
         </h2>
