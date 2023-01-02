@@ -5,7 +5,7 @@ import { useLocation } from "react-router-dom";
 const GetExplanation = (props) => {
   const location = useLocation();
   console.log("received location:", location);
-  console.log("received props:", props);
+  // console.log("received props:", props);
   // const props = queryString.parse(props.location.search);
   // console.log(tp);
   const [error, setError] = useState(null);
@@ -16,15 +16,19 @@ const GetExplanation = (props) => {
   const strong = 1;
   const gb = 0;
 
-  const book = props.selectedBook;
-  const chapter = props.selectedChapter;
-  const verse = props.verse;
+  const book = location.state.selectedVerse.engs;
+  const chapter = location.state.selectedChapter;
+  const verse = location.state.selectedVerse.sec;
 
   console.log("called", book, chapter, verse);
 
   const fetchExplanationData = () => {
-    // Sample: https://bible.fhl.net/json/sc.php?book=1,2,3&engs=Rom&chap=1&sec=1&gb=0
-    fetch(`https://bible.fhl.net/json/sc.php?engs=Rom&chap=1&sec=1&gb=0`)
+    console.log(
+      `https://bible.fhl.net/json/sc.php?engs=${book}&chap=${chapter}&sec=${verse}&gb=0`
+    );
+    fetch(
+      `https://bible.fhl.net/json/sc.php?engs=${book}&chap=${chapter}&sec=${verse}&gb=0`
+    )
       .then((res) => res.json())
       .then(
         (result) => {
@@ -43,7 +47,21 @@ const GetExplanation = (props) => {
 
   useEffect(() => {
     fetchExplanationData();
-  }, [props.book, props.chapter]);
+  }, [
+    location.state.selectedBook,
+    location.state.selectedChapter,
+    location.state.selectedVerse.sec,
+  ]);
+
+  const GenerateExplanation = (data) => {
+    // console.log(data.verses);
+    // fetchExplanationData();
+    return (
+      <div className="text-left text-l whitespace-pre-wrap">
+        {data.explanations}
+      </div>
+    );
+  };
 
   if (error) {
     return <div>Error: {error.message}</div>;
@@ -62,15 +80,6 @@ const GetExplanation = (props) => {
       </div>
     );
   }
-};
-
-const GenerateExplanation = (data) => {
-  console.log(data.verses);
-  return (
-    <div className="text-left text-l whitespace-pre-wrap">
-      {data.explanations}
-    </div>
-  );
 };
 
 export default GetExplanation;
