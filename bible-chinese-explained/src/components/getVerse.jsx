@@ -1,6 +1,14 @@
 import React, { Component, useState, useEffect } from "react";
 import GetExplanation from "./getExplanation";
 import Testing from "./testing";
+import {
+  Routes,
+  Route,
+  Navigate,
+  Link,
+  useNavigate,
+  Redirect,
+} from "react-router-dom";
 
 const GetVerse = (props) => {
   const [error, setError] = useState(null);
@@ -40,30 +48,47 @@ const GetVerse = (props) => {
         }
       );
   };
+  let navigate = useNavigate();
+  const handleExplanation = (book, chapter, verse) => {
+    console.log("i am printing prop:", book, chapter, verse);
+    // <Link to="/getexplanation">GetExplanation</Link>;
+    // console.log(`getexplanation/:${book}?/:${chapter}?/:${verse}?`);
+    return navigate("getexplanation", { verse: `${verse}` });
+    // <Routes>
+    //   <Route path="*" element={<Navigate to="/not-found" replace />} />;
+    // </Routes>
+    // <Route path='/redirect-page' element={ <Redirect to="/error-page" /> }/>
+  };
+
+  const GenerateVerse = (props) => {
+    return props.verses.map((verse) => (
+      <div
+        key={verse.sec}
+        className="text-left bg-[#FBD7B1] px-4 py-2 transition duration-300 ease-in-out hover:bg-[#F8BB8B] text-2xl"
+        onClick={
+          () =>
+            navigate("getexplanation", {
+              state: {
+                selectedBook: props.selectedBook,
+                selectedChapter: props.selectedChapter,
+                selectedVerse: verse,
+              },
+            })
+          // handleExplanation(
+          //   props.selectedBook,
+          //   props.selectedChapter,
+          //   verse.sec
+          // )
+        }
+      >
+        {verse.sec} {verse.bible_text}
+      </div>
+    ));
+  };
 
   useEffect(() => {
     fetchBibleData();
   }, [props.selectedBook, props.selectedChapter]);
-
-  // useEffect(() => {
-  //   fetch(
-  //     `https://bible.fhl.net/json/qb.php?chineses=${chineses}&chap=${chap}&version=${version}&strong=${strong}&gb=${gb}`
-  //   )
-  //     .then((res) => res.json())
-  //     .then(
-  //       (result) => {
-  //         setIsLoaded(true);
-  //         setItems(result);
-  //       },
-  //       // Note: it's important to handle errors here
-  //       // instead of a catch() block so that we don't swallow
-  //       // exceptions from actual bugs in components.
-  //       (error) => {
-  //         setIsLoaded(true);
-  //         setError(error);
-  //       }
-  //     );
-  // }, [props.selectedBook, props.selectedChapter]);
 
   if (error) {
     return <div>Error: {error.message}</div>;
@@ -94,25 +119,6 @@ const GetVerse = (props) => {
 
     // return JSON.stringify(items);
   }
-};
-
-const handleExplanation = (book, chapter, verse) => {
-  console.log("i am printing prop:", book, chapter, verse);
-  return <Testing />;
-};
-
-const GenerateVerse = (props) => {
-  return props.verses.map((verse) => (
-    <div
-      key={verse.sec}
-      className="text-left bg-[#FBD7B1] px-4 py-2 transition duration-300 ease-in-out hover:bg-[#F8BB8B] text-2xl"
-      onClick={() =>
-        handleExplanation(props.selectedBook, props.selectedChapter, verse.sec)
-      }
-    >
-      {verse.sec} {verse.bible_text}
-    </div>
-  ));
 };
 
 export default GetVerse;

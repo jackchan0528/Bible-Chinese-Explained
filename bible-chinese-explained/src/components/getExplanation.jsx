@@ -1,7 +1,13 @@
 import React, { Component, useState, useEffect } from "react";
+import queryString from "query-string";
+import { useLocation } from "react-router-dom";
 
 const GetExplanation = (props) => {
-  console.log("hi");
+  const location = useLocation();
+  console.log("received location:", location);
+  console.log("received props:", props);
+  // const props = queryString.parse(props.location.search);
+  // console.log(tp);
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [items, setItems] = useState([]);
@@ -10,16 +16,15 @@ const GetExplanation = (props) => {
   const strong = 1;
   const gb = 0;
 
-  const book = props.book;
-  const chapter = props.chapter;
+  const book = props.selectedBook;
+  const chapter = props.selectedChapter;
   const verse = props.verse;
 
   console.log("called", book, chapter, verse);
 
   const fetchExplanationData = () => {
-    fetch(
-      `https://bible.fhl.net/json/sc.php?book=1,2,3&engs=Rom&chap=1&sec=1&gb=0`
-    )
+    // Sample: https://bible.fhl.net/json/sc.php?book=1,2,3&engs=Rom&chap=1&sec=1&gb=0
+    fetch(`https://bible.fhl.net/json/sc.php?engs=Rom&chap=1&sec=1&gb=0`)
       .then((res) => res.json())
       .then(
         (result) => {

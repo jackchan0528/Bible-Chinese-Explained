@@ -3,7 +3,7 @@ import React, { Component, useEffect } from "react";
 const HomePage = (props) => {
   return (
     <div className="bg-[#F2AA7E]">
-      <h1 className="text-xl font-bold">聖經App</h1>
+      <h1 className="text-xl font-bold text-center text-xl">聖經App</h1>
       {/* <h2 className="text-left font-bold text-3xl bg-[#FACFAD]">Hi</h2> */}
       <div className="flex">
         <div className="flex-col w-1/2 px-2 py-2">
@@ -25,7 +25,7 @@ const HomePage = (props) => {
             className=" bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 px-2 py-2"
           >
             <option value="" disabled={true}>
-              請選擇經卷
+              --請選擇經卷--
             </option>
             <GetBookList />
           </select>
@@ -45,7 +45,7 @@ const HomePage = (props) => {
             className=" bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 px-2 py-2"
           >
             <option value="" disabled={true}>
-              請選擇
+              --請選擇章節--
             </option>
             <GetNumberOfChaptersList
               value={props.selectedBook}
@@ -58,6 +58,10 @@ const HomePage = (props) => {
           </select>
         </div>
       </div>
+      {/* Get a main Body when Book is not selected */}
+      {!props.selectedBook && (
+        <h3 className="bg-[#FBD7B1] text-center text-l">請選擇中文經卷</h3>
+      )}
     </div>
   );
 };

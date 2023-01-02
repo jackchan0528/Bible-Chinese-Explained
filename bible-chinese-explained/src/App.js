@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import React, { Component, useState, useEffect } from 'react';
+import { Routes, Route, Navigate } from "react-router-dom";
 import GetBibleVerse from './components/getBibleVerse';
 import GetStatus from './components/getStatus';
 import Testing from './components/testing';
@@ -8,20 +9,13 @@ import GetBasicBibleInfo from './components/getBasicBibleInfo';
 import GetVerse from './components/getVerse';
 import HomePage from './components/homepage';
 import GetExplanation from './components/getExplanation';
+import NotFound from './components/notFound';
 
 function App() {
   const [selectedBook, setSelectedBook] = useState("");
   const [selectedChapter, setSelectedChapter] = useState(1);
 
   console.log("Current selection:", selectedBook, selectedChapter)
-
-
-  // const chineses = selectedBook;
-  // const chap = selectedChapter;
-  // const version = "nstrunv";
-  // const strong = 1;
-  // const gb = 0;
-  // const getVerseParams = { selectedBook, selectedChapter, version, strong, gb }
 
   const books = [
     { id: "1", engShortName: "Gen", engLongName: "Genesis", shortName: "創", longName: "創世記", engShorterName: "Ge", numberOfChapters: 50 },
@@ -92,19 +86,10 @@ function App() {
     { id: "66", engShortName: "Rev", engLongName: "Revelation", shortName: "啟", longName: "啟示錄", engShorterName: "Re", numberOfChapters: 22 },
   ];
 
-
-
   const handleSelectedBook = (book) => { setSelectedBook(book); }
   const handleSelectedChapter = (chap) => { setSelectedChapter(chap); }
 
-  // helper function to get the number of Chpaters in each Book
-  // const getNumberOfChaptersOfBook = books.filter((book) => {
-  //     return book.shortName === selectedBook
-  //   })[0].numberOfChapters
-
   const handlePreviousChapter = () => {
-    // console.log("Additional checks on Current selection:", selectedBook, selectedChapter)
-
     // be careful that selectedChapter is a string, while numberOfChapters is a number, so we convert selectedChapter to number
     const currentChapter = Number(selectedChapter)
     if (currentChapter === 1) {
@@ -120,14 +105,8 @@ function App() {
       setSelectedChapter(currentChapter - 1)
     }
     window.scrollTo(0, 0)
-
-
-    // const target = selectedChapter > 1 ? selectedChapter - 1 : 1
-    // setSelectedChapter(target)
   }
   const handleNextChapter = () => {
-
-    // const numberOfChapters = getNumberOfChaptersOfBook
     const numberOfChapters = books.filter((book) => {
       return book.shortName === selectedBook
     })[0].numberOfChapters
@@ -152,20 +131,47 @@ function App() {
 
   return (
     <React.Fragment>
+      <Routes>
+        {/* <Route path="/getexplanation"
+          render={(props) =>
+            <GetExplanation {...props} />}
+        /> */}
+        <Route path="/getexplanation"
+          element={<GetExplanation />}
+        />
+        {/* <Route path="/products/:id" component={ProductDetails} /> */}
+        {/* <Route
+          path="/products"
+          render={props => <Products sortBy="newest" {...props} />}
+        /> */}
+        {/* <Route path="/posts/:year?/:month?" component={Posts} /> */}
+        {/* <Route path="/admin" component={Dashboard} /> */}
+        {/* <Redirect from="/messages" to="/posts" /> */}
+        <Route path="/not-found" element={<NotFound />} />
+        <Route path="/" exact element={
+          <HomePage
+            selectedBook={selectedBook}
+            selectedChapter={selectedChapter}
+            onSelectedBook={(book) => { handleSelectedBook(book) }}
+            onSelectedChapter={(chap) => { handleSelectedChapter(chap) }}
+            books={books}
+          />}
+        />
+        <Route path="*" element={<Navigate to="/not-found" replace />} />
+        {/* <Navigate to="/not-found" /> */}
+      </Routes>
       <div className="App flex flex-col" >
         {/* <div style={{ maxHeight: '75vh', overflow: 'auto' }}> */}
         {/* < Testing /> */}
         {/* < GetExplanation /> */}
         {/* </div> */}
-        < HomePage
-          // key={[selectedBook, selectedChapter]}
-          // key={selectedBook}
+        {/* < HomePage
           selectedBook={selectedBook}
           selectedChapter={selectedChapter}
           onSelectedBook={(book) => { handleSelectedBook(book) }}
           onSelectedChapter={(chap) => { handleSelectedChapter(chap) }}
           books={books}
-        />
+        /> */}
         {/* < GetBibleVerse /> */}
         {/* < GetStatus /> */}
         {/* < GetBasicBibleInfo /> */}
@@ -195,8 +201,7 @@ function App() {
           </div>}
         </div>
         {/* Get a main Body when Book is not selected */}
-        {!selectedBook && <h3 className='bg-[#FBD7B1]'>Please select a book</h3>}
-        {/* < GetVerse chineses="羅" chap="1" sec="1" version="nstrunv" strong="1" gb="0" /> */}
+        {/* {!selectedBook && <h3 className='bg-[#FBD7B1]'>Please select a book</h3>} */}
       </div>
     </React.Fragment >
   );
