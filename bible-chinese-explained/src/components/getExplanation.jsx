@@ -1,9 +1,10 @@
 import React, { Component, useState, useEffect } from "react";
 import queryString from "query-string";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const GetExplanation = (props) => {
   const location = useLocation();
+  const navigate = useNavigate();
   console.log("received location:", location);
   // console.log("received props:", props);
   // const props = queryString.parse(props.location.search);
@@ -81,6 +82,14 @@ const GetExplanation = (props) => {
           《{book}》 第{chapter}章 第{verse}節
         </h2>
         <GenerateExplanation explanations={items.record[0].com_text} />
+        <div className="grid grid-flow-col auto-rows-max inline-flex h-auto px-2 py-2">
+          <button
+            className="bg-gray-400 hover:bg-[#F09E6A] text-white font-bold py-2 px-4 rounded-full"
+            onClick={() => navigate(-1)}
+          >
+            返回經文
+          </button>
+        </div>
       </div>
     );
   }
