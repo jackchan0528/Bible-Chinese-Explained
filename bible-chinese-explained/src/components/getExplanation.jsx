@@ -65,8 +65,8 @@ const GetExplanation = (props) => {
     // output = output.replaceAll("|，", "，");
     // output = output.replaceAll("|）", "）");
     // output = output.replaceAll("|", " ");
-    // console.log("original: ", data.explanations.replaceAll(/\s+/g, " "));
-    // console.log("after: ", output);
+    console.log("original: ", data.explanations.replaceAll(/\s+/g, " "));
+    console.log("after: ", output);
     var output = data.explanations;
     // fetchExplanationData();
     return (
