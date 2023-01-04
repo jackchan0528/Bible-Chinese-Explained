@@ -24,9 +24,9 @@ const GetExplanation = (props) => {
   console.log("called", book, chapter, verse);
 
   const fetchExplanationData = () => {
-    console.log(
-      `https://bible.fhl.net/json/sc.php?engs=${book}&chap=${chapter}&sec=${verse}&gb=0`
-    );
+    // console.log(
+    //   `https://bible.fhl.net/json/sc.php?engs=${book}&chap=${chapter}&sec=${verse}&gb=0`
+    // );
     fetch(
       `https://bible.fhl.net/json/sc.php?engs=${book}&chap=${chapter}&sec=${verse}&gb=0`
     )
@@ -55,12 +55,22 @@ const GetExplanation = (props) => {
   ]);
 
   const GenerateExplanation = (data) => {
-    // console.log(data.verses);
+    // var output = JSON.stringify(data.explanations);
+    // output = output.replaceAll(/\s+/g, " ");
+    // output = output.replaceAll("\\r\\n", "\n");
+    // output = output.replaceAll("| ◎", "\t\t◎");
+    // output = output.replaceAll("●", "\t\t●");
+    // output = output.replaceAll("◎", "\t\t◎");
+    // output = output.replaceAll("|、", "、");
+    // output = output.replaceAll("|，", "，");
+    // output = output.replaceAll("|）", "）");
+    // output = output.replaceAll("|", " ");
+    // console.log("original: ", data.explanations.replaceAll(/\s+/g, " "));
+    // console.log("after: ", output);
+    var output = data.explanations;
     // fetchExplanationData();
     return (
-      <div className="text-left text-l whitespace-pre-wrap">
-        {data.explanations}
-      </div>
+      <div className="whitespace-pre text-justify break-keep">{output}</div>
     );
   };
 
